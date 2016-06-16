@@ -5,5 +5,5 @@ class ITempMonAdapter
 {
     public:
         virtual ~ITempMonAdapter() {}
-        virtual void NotifyTempChg() = 0;
+        virtual void NotifyTempChg(double temp) = 0;
 };
