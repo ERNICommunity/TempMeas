@@ -5,7 +5,9 @@
  *      Author: niklausd
  */
 
-#include <Arduino.h>
+#include <WiFiClient.h>
+#include <Wire.h>
+
 #ifdef ESP8266
 #include <ESP8266WiFi.h>
 #endif
@@ -25,6 +27,8 @@
 #include <ProductDebug.h>
 #include <Adafruit_MCP9808.h>
 #include <TM1638.h>
+#include <TempMon.h>
+#include <MyTempMonAdapter.h>
 
 // I2C Pins in use on Huzzah
 #define SDA_PIN 4
@@ -46,6 +50,8 @@ void setup()
   //-----------------------------------------------------------------------------
   ThingSpeak.begin(*(new WiFiClient()));
 #endif
+
+  new TempMon(new MyTempMonAdpater());
 }
 
 void loop()

@@ -5,17 +5,20 @@
  *      Author: niklausd
  */
 
-#include "ITempMonAdapter.h"
-#include <ThingSpeak.h>
-
 #ifndef SRC_MYTEMPMONADAPTER_H_
 #define SRC_MYTEMPMONADAPTER_H_
 
-class MyTempMonAdapter : public ITempMonAdapter
-{
-     public:
-        virtual void NotifyTempChg(float temp);
+#include "ITempMonAdapter.h"
 
+
+class MyTempMonAdpater : public ITempMonAdapter
+{
+public:
+  MyTempMonAdpater()
+  : ITempMonAdapter()
+  { }
+  virtual ~MyTempMonAdpater() { }
+  void NotifyTempChg(float temp);
 };
 
 #endif /* SRC_MYTEMPMONADAPTER_H_ */
