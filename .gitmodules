@@ -10,3 +10,9 @@
 [submodule "lib/ramutils"]
 	path = lib/ramutils
 	url = https://github.com/dniklaus/arduino-utils-mem.git
+[submodule "lib/mcp9808"]
+	path = lib/mcp9808
+	url = https://github.com/dniklaus/Adafruit_MCP9808_Library.git
+[submodule "lib/tm1638"]
+	path = lib/tm1638
+	url = https://github.com/rjbatista/tm1638-library.git

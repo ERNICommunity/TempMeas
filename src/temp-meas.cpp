@@ -23,11 +23,22 @@
 #include <DbgPrintConsole.h>
 #include <DbgTraceLevel.h>
 #include <ProductDebug.h>
+#include <Adafruit_MCP9808.h>
+#include <TM1638.h>
+
+// I2C Pins in use on Huzzah
+#define SDA_PIN 4
+#define SCL_PIN 5
 
 SerialCommand* sCmd = 0;
 
 void setup()
 {
+  //-----------------------------------------------------------------------------
+  // ThingSpeak Client
+  //-----------------------------------------------------------------------------
+  Wire.begin(SDA_PIN, SCL_PIN);
+
   setupDebugEnv();
 #ifdef ESP8266
   //-----------------------------------------------------------------------------
