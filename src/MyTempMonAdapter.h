@@ -6,6 +6,7 @@
  */
 
 #include "ITempMonAdapter.h"
+#include <ThingSpeak.h>
 
 #ifndef SRC_MYTEMPMONADAPTER_H_
 #define SRC_MYTEMPMONADAPTER_H_
@@ -13,7 +14,7 @@
 class MyTempMonAdapter : public ITempMonAdapter
 {
      public:
-        virtual void NotifyTempChg(double temp);
+        virtual void NotifyTempChg(float temp);
 
 };
 

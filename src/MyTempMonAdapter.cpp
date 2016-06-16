@@ -10,9 +10,9 @@
 class MyTempMonAdpater
 {
     public:
-        virtual void NotifyTempChg(double temp)
+        virtual void NotifyTempChg(float temp)
         {
-            //do stuff
+          ThingSpeak.setField(1, temp);
         }
 };
 
