@@ -8,16 +8,11 @@
 #ifndef SRC_MYTEMPMONADAPTER_H_
 #define SRC_MYTEMPMONADAPTER_H_
 
-#include "ITempMonAdapter.h"
-
+#include <TempMon.h>
 
 class MyTempMonAdpater : public ITempMonAdapter
 {
 public:
-  MyTempMonAdpater()
-  : ITempMonAdapter()
-  { }
-  virtual ~MyTempMonAdpater() { }
   void NotifyTempChg(float temp);
 };
 

@@ -7,9 +7,34 @@
 
 #include "TempMon.h"
 #include "Timer.h"
-#include "TempMeasTimerAdapter.h"
-#include "ITempMonAdapter.h"
 #include "Adafruit_MCP9808.h"
+
+//-----------------------------------------------------------------------------
+
+class TempMeasTimerAdapter : public TimerAdapter
+{
+private:
+  TempMon* m_tempMon;
+public:
+  TempMeasTimerAdapter(TempMon* tempMon)
+  : m_tempMon(tempMon)
+  { }
+
+  virtual ~TempMeasTimerAdapter() { }
+
+  void timeExpired()
+  {
+    if(0 != m_tempMon)
+    {
+      m_tempMon->measTemp();
+    }
+  }
+ private:
+  TempMeasTimerAdapter(const TempMeasTimerAdapter& src);              // copy constructor
+  TempMeasTimerAdapter& operator = (const TempMeasTimerAdapter& src); // assignment operator
+};
+
+//-----------------------------------------------------------------------------
 
 TempMon::TempMon(ITempMonAdapter* tempMonAdapter)
 : m_timer(new Timer(new TempMeasTimerAdapter(this), Timer::IS_RECURRING, 15000))

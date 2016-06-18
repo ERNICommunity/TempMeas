@@ -5,7 +5,7 @@
  *      Author: niklausd
  */
 
-#include "MyTempMonAdapter.h"
+#include <MyTempMonAdapter.h>
 #include <ThingSpeak.h>
 
 
