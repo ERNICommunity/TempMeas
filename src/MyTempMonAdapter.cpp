@@ -26,19 +26,17 @@ void MyTempMonAdpater::NotifyTempChg(float temp)
     trLevel = DbgTrace_Level::debug;
   }
   TR_PRINT_STR(m_trPort, trLevel, thingSpeakStatusString(status))
+
   if (0 != m_tm1638)
   {
-    unsigned int ganzZahl = temp;
+    bool isNegative = (temp < 0.0);
+    unsigned int ganzZahl = temp * (isNegative ? -1 : 1);
     unsigned int nachKomma = (temp - ganzZahl) * 100;
-    Serial.print(ganzZahl);
-    Serial.print(".");
-    Serial.println(nachKomma);
     word dots = 1 << 4;
-    char sign = ' ';
+    char sign = isNegative ? '-' : ' ';
     char text[17];
     sprintf(text, " %c%02u%02u~C", sign, ganzZahl, nachKomma);
     m_tm1638->setDisplayToString(text, dots);
-
   }
 }
 
