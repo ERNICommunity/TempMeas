@@ -10,10 +10,19 @@
 
 #include <TempMon.h>
 
+class DbgTrace_Port;
+
 class MyTempMonAdpater : public ITempMonAdapter
 {
 public:
+  MyTempMonAdpater();
   void NotifyTempChg(float temp);
+
+private:
+  const char* thingSpeakStatusString(int status);
+
+private:
+  DbgTrace_Port* m_trPort;
 };
 
 #endif /* SRC_MYTEMPMONADAPTER_H_ */
