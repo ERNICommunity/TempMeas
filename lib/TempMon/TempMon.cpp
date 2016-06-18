@@ -11,8 +11,10 @@
 #include "ITempMonAdapter.h"
 #include "Adafruit_MCP9808.h"
 
-TempMon::TempMon(ITempMonAdapter* tempMonAdapter) :
-    m_timer(new Timer(new TempMeasTimerAdapter(this))), m_tempSensor(new Adafruit_MCP9808()), m_adapter(tempMonAdapter)
+TempMon::TempMon(ITempMonAdapter* tempMonAdapter)
+: m_timer(new Timer(new TempMeasTimerAdapter(this), Timer::IS_RECURRING, 15000))
+, m_tempSensor(new Adafruit_MCP9808())
+, m_adapter(tempMonAdapter)
 {
   m_tempSensor->begin(0x18);
 }
