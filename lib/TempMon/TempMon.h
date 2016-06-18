@@ -25,7 +25,7 @@ public:
 class TempMon
 {
 public:
-  TempMon(ITempMonAdapter* tempMonAdapter);
+  TempMon(ITempMonAdapter* tempMonAdapter, unsigned long monitorIntervalMillis = s_defaultMonitorIntervalMillis);
   virtual ~TempMon();
   void measTemp();
 
@@ -33,6 +33,9 @@ private:
   Timer* m_timer;
   Adafruit_MCP9808* m_tempSensor;
   ITempMonAdapter* m_adapter;
+  unsigned long m_monitorIntervalMillis;
+  const static unsigned long s_defaultMonitorIntervalMillis;
+
 
 private:  // forbidden functions
   TempMon();                                // default constructor
