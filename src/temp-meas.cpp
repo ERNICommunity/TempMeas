@@ -30,6 +30,14 @@
 #include <TempMon.h>
 #include <MyTempMonAdapter.h>
 
+//-----------------------------------------------------------------------------
+// TM1638 8-digit 7-segment LED Display
+//-----------------------------------------------------------------------------
+#define TM1638_DIO_PIN 12
+#define TM1638_CLK_PIN 14
+#define TM1638_STB_PIN 16
+TM1638* tm1638 = 0;
+
 // I2C Pins in use on Huzzah
 #define SDA_PIN 4
 #define SCL_PIN 5
@@ -51,7 +59,15 @@ void setup()
   ThingSpeak.begin(*(new WiFiClient()));
 #endif
 
-  new TempMon(new MyTempMonAdpater());
+  //-----------------------------------------------------------------------------
+  // TM1638 8-digit 7-segment LED Display
+  //-----------------------------------------------------------------------------
+  tm1638 = new TM1638(TM1638_DIO_PIN, TM1638_CLK_PIN, TM1638_STB_PIN);
+
+  //-----------------------------------------------------------------------------
+  // Temperature Monitor
+  //-----------------------------------------------------------------------------
+  new TempMon(new MyTempMonAdpater(tm1638));
 }
 
 void loop()

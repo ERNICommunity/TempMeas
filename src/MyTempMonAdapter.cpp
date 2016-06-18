@@ -9,9 +9,11 @@
 #include <ThingSpeak.h>
 #include <DbgTracePort.h>
 #include <DbgTraceLevel.h>
+#include <TM1638.h>
 
-MyTempMonAdpater::MyTempMonAdpater()
+MyTempMonAdpater::MyTempMonAdpater(TM1638* tm1638)
 : m_trPort(new DbgTrace_Port("temp", DbgTrace_Level::error))
+, m_tm1638(tm1638)
 { }
 
 void MyTempMonAdpater::NotifyTempChg(float temp)
@@ -24,6 +26,20 @@ void MyTempMonAdpater::NotifyTempChg(float temp)
     trLevel = DbgTrace_Level::debug;
   }
   TR_PRINT_STR(m_trPort, trLevel, thingSpeakStatusString(status))
+  if (0 != m_tm1638)
+  {
+    unsigned int ganzZahl = temp;
+    unsigned int nachKomma = (temp - ganzZahl) * 100;
+    Serial.print(ganzZahl);
+    Serial.print(".");
+    Serial.println(nachKomma);
+    word dots = 1 << 4;
+    char sign = ' ';
+    char text[17];
+    sprintf(text, " %c%02u%02u~C", sign, ganzZahl, nachKomma);
+    m_tm1638->setDisplayToString(text, dots);
+
+  }
 }
 
 const char* MyTempMonAdpater::thingSpeakStatusString(int status)
