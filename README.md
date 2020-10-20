@@ -1,4 +1,7 @@
 # TempMeas
+
+:warning: **REPOSITORY NOT ACTIVE SINCE 2016 Dependabot alerts in git security settings disabled**
+
 EDDCH1602, Hands-on Session "Bare Metal Programming for Devices with C++"
 
 ## How to build (for Eclipse)
